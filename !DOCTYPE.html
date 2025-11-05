@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta Gerencial: Asistencia Evento "Espíritu Metro 30 Años"</title>
+    <style>
+        /* Estilos Generales */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(180deg, #f7f9fc 0%, #ffffff 100vh);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Contenedor Principal */
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(4, 28, 55, 0.08);
+            overflow: hidden;
+            border: 1px solid #eef2f7;
+        }
+
+        /* Encabezado */
+        header {
+            background: linear-gradient(135deg, #005a9e, #004a80);
+            color: #ffffff;
+            padding: 25px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 12px rgba(0, 67, 127, 0.15);
+            position: relative;
+            z-index: 10;
+        }
+        
+        header img {
+            max-height: 80px;
+            margin-right: 20px;
+            margin-bottom: 10px;
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 2.3em;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 20px;
+            }
+            header img {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            header h1 {
+                font-size: 1.8em;
+            }
+        }
+
+        /* Contenido Principal */
+        main {
+            padding: 30px 40px;
+        }
+
+        /* Sección */
+        .seccion {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e9eef2;
+        }
+        
+        .seccion:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .seccion h2 {
+            font-size: 1.8em;
+            color: #005a9e;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e9eef2;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        
+        .horarios {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .horarios li {
+            font-size: 1.1em;
+            list-style-type: none;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .horarios li::before {
+            content: '🗓️';
+            position: absolute;
+            left: 0;
+            top: 1px;
+            font-size: 1.2em;
+        }
+
+        /* Nota Importante (Cajón Amarillo) */
+        .nota-importante {
+            background-color: #fffbeb;
+            border: 1px solid #ffe58f;
+            border-left: 5px solid #ffc107;
+            padding: 20px 25px;
+            margin: 30px 0;
+            border-radius: 8px;
+            color: #664d03;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        .nota-importante h2 {
+            font-size: 1.3em;
+            margin-top: 0;
+            margin-bottom: 5px;
+            border: none;
+            padding: 0;
+            color: #664d03;
+        }
+
+        /* Selector Interactivo (Cajón Verde) */
+        .selector-container {
+            background-color: #e6f8f0;
+            border: 1px solid #c2e6d6;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .selector-container label {
+            display: block;
+            font-size: 1.25em;
+            font-weight: 600;
+            color: #006837;
+            margin-bottom: 18px;
+        }
+        
+        select#areaSelector {
+            width: 100%;
+            max-width: 450px;
+            padding: 14px;
+            font-size: 1.1em;
+            border: 1px solid #a0a0a0;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        select#areaSelector:hover {
+            border-color: #005a9e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        select#areaSelector:focus {
+            outline: none;
+            border-color: #005a9e;
+            box-shadow: 0 0 0 3px rgba(0, 90, 158, 0.2);
+        }
+        
+        /* Área de Resultados (Cajones Pastel) */
+        .results-area h3 {
+            font-size: 1.5em;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .rules-content {
+            display: none;
+            animation: fadeIn 0.5s forwards;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-top: 20px;
+        }
+        
+        #estacionesRules {
+            background: #eaf6ff;
+            border: 1px solid #bde0ff;
+        }
+        #estacionesRules h3 { color: #0056b3; }
+
+        #ventasRules {
+            background: #fff0f1;
+            border: 1px solid #ffd9dc;
+        }
+        #ventasRules h3 { color: #d94854; }
+        
+        #defaultMessage {
+            color: #777;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.1em;
+            background: #f8f8f8;
+            border-radius: 8px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Listas de reglas */
+        .rules-list li {
+            list-style-type: none;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 15px;
+            font-size: 1.05em;
+            color: #444;
+        }
+
+        .rules-list li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.1em;
+        }
+        
+        .rules-list li ul {
+            list-style-type: '– ';
+            margin-top: 10px;
+            margin-left: 10px;
+            padding-left: 20px;
+            color: #555;
+            transition: opacity 0.5s ease;
+        }
+        
+        .rules-list li ul li {
+            font-size: 0.95em;
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+        
+        .rules-list li ul li::before { content: ''; }
+
+        /* NUEVA SECCIÓN: Back Office (Cajón Gris) */
+        .info-cajon {
+            background-color: #f8f9fa; /* Pastel gris muy claro */
+            border: 1px solid #e9ecef;
+            border-left: 5px solid #6c757d; /* Borde gris */
+            padding: 20px 25px;
+            margin-top: 20px;
+            border-radius: 8px;
+            color: #343a40;
+            font-size: 1.1em;
+            font-weight: 500;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            border: 1px solid #eef2f7;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+        }
+
+        .faq-question {
+            padding: 18px 25px;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #005a9e;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f8faff;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(135deg, #f0f5ff, #e6eeff);
+        }
+
+        .faq-question .icon {
+            font-size: 1.6em;
+            font-weight: 300;
+            color: #005a9e;
+            transition: transform 0.3s ease-in-out;
+            line-height: 1;
+        }
+
+        .faq-question.active .icon {
+            transform: rotate(135deg);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            background-color: #ffffff;
+            color: #555;
+            font-size: 1em;
+        }
+        
+        .faq-answer p { margin-top: 15px; }
+
+        /* Imagen Resumen */
+        .resumen-img {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 15px;
+            border: 1px solid #ddd;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .resumen-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .parrafo-centrado {
+            text-align: center;
+            font-size: 1.1em;
+            color: #555;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <img src="Imagen1.png" alt="Logo 30 Años Metro de Medellín">
+            <h1>Propuesta: Asistencia Evento "Espíritu Metro 30 Años"</h1>
+        </header>
+        
+        <main>
+            <section class="seccion">
+                <h2>🗓️ Fechas y Horarios del Evento</h2>
+                <ul class="horarios">
+                    <li><strong>Martes 2 de diciembre:</strong> 4:00 p.m.</li>
+                    <li><strong>Miércoles 3 de diciembre:</strong> 4:00 p.m.</li>
+                    <li><strong>Jueves 4 de diciembre:</strong> 11:00 a.m.</li>
+                </ul>
+            </section>
+
+            <section class="nota-importante">
+                <h2>💡 Nota Importante</h2>
+                <p>Se compensarán <strong>3 horas como tiempo extra</strong> para el personal que asista en jornada contraria a su turno habitual.</p>
+            </section>
+
+            <section class="selector-container">
+                <label for="areaSelector">🔍 Consulta tus directrices de asistencia personalizadas:</label>
+                <select id="areaSelector">
+                    <option value="">-- Selecciona tu área --</option>
+                    <option value="estaciones">Personal de Estaciones</option>
+                    <option value="ventas">Personal de Ventas</option>
+                </select>
+            </section>
+            
+            <section class="results-area">
+                
+                <div id="defaultMessage">
+                    <p>Por favor, selecciona tu área para ver la información específica que te aplica.</p>
+                </div>
+
+                <div id="estacionesRules" class="rules-content">
+                    <h3>Directrices: Personal de Estaciones</h3>
+                    <ul class="rules-list">
+                        <li>
+                            <strong>Martes 2 y jueves 4:</strong> Podrán asistir los <strong>servidores</strong> de las <strong>Bases B3 y B1</strong> que tengan descanso programado según rotación, así como quienes laboren en turno contrario al horario del evento.
+                        </li>
+                        <li>
+                            <strong>Miércoles 3:</strong> Se realizará el siguiente ajuste de descansos:
+                            
+                            <ul id="descanso-inicial" style="transition: opacity 0.5s ease;">
+                                <li><strong>Base B3 T2:</strong> descansará el miércoles 3 de diciembre.</li>
+                                <li><strong>Base B2 T2:</strong> descansará el sábado 6 de diciembre.</li>
+                            </ul>
+                            
+                            <ul id="descanso-final" style="display: none; transition: opacity 0.5s ease;">
+                                <li><strong>Base B2 T2:</strong> descansará el miércoles 3 de diciembre.</li>
+                                <li><strong>Base B3 T2:</strong> descansará el sábado 6 de diciembre.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="ventasRules" class="rules-content">
+                    <h3>Directrices: Personal de Ventas</h3>
+                    <ul class="rules-list">
+                        <li>
+                            <strong>Bases B3 y B4 (Todos los días):</strong> Podrán asistir los <strong>servidores</strong> que tengan descanso programado según rotación, así como quienes laboren en turno contrario al horario del evento.
+                        </li>
+                        <li>
+                            <strong>Bases B1 T2 y B2 T2 (Mar 2 y Mié 3):</strong> Se conformarán grupos de 13 personas, quienes liquidarán al llegar el turno T3 para desplazarse al evento.
+                        </li>
+                        <li>
+                            <strong>Personal de PAC (JAV e ITA):</strong> Se proponen los siguientes ajustes de horario para facilitar la asistencia del personal que no descansa en estas fechas:
+                            <ul>
+                                <li><strong>Martes 2 y Miércoles 3:</strong> 10:00 a 14:00.</li>
+                                <li><strong>Jueves 4:</strong> 16:00 a 19:30.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Personal SV (Supervisores):</strong> Asistirán según su rotación programada o disponibilidad.
+                        </li>
+                    </ul>
+                </div>
+                
+            </section>
+
+            <section class="seccion" id="backOfficeSection">
+                <h2>🏢 Personal de Back Office</h2>
+                <div class="info-cajon">
+                    <p>La asistencia del <strong>Personal de los Back</strong> (procesos administrativos y de soporte) será asignada directamente por los <strong>profesionales de cada proceso</strong>, garantizando la continuidad del servicio.</p>
+                </div>
+            </section>
+
+            <section class="faq-section seccion">
+                <h2>❓ Preguntas Frecuentes (FAQ)</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        ¿Quién puede asistir del personal de estaciones?
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Para los días 2 y 4: Bases B3 y B1 con descanso programado, o personal en turno contrario. Para el día 3: Se realizarán ajustes especiales en las bases B2 T2 y B3 T2.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        ¿Cómo funcionan los ajustes del miércoles 3?
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Base B2 T2 descansará el miércoles 3 de diciembre, y Base B3 T2 descansará el sábado 6 de diciembre.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        ¿Quién puede asistir del personal de ventas?
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Pueden asistir los 3 días (2, 3 y 4 de diciembre) las Bases B3 y B4 con descanso programado, o personal en turno contrario al evento.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        ¿Qué pasa con el personal que asiste en jornada contraria?
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Recibirá pago de 3 horas como tiempo extra por su participación en el evento.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        ¿Cómo funciona la logística especial de ventas?
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Los días martes 2 y miércoles 3 se conformarán grupos de 13 personas de las bases B1 T2 y B2 T2, quienes liquidarán al llegar el turno T3 para desplazarse al evento.</p>
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="seccion">
+                <h2>📊 Resumen Gráfico de Asistencia</h2>
+                <p class="parrafo-centrado">A continuación, se presenta la matriz de asistencia completa para consulta rápida:</p>
+                
+                <img src="Imagen de WhatsApp 2025-11-05 a las 15.45.17_1db3a3ac.jpg" alt="Tabla resumen de asistencia" class="resumen-img">
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        // Lógica para el selector de área
+        const selector = document.getElementById('areaSelector');
+        const defaultMessage = document.getElementById('defaultMessage');
+        const estacionesRules = document.getElementById('estacionesRules');
+        const ventasRules = document.getElementById('ventasRules');
+
+        selector.addEventListener('change', function() {
+            const selectedValue = this.value;
+            
+            defaultMessage.style.display = 'none';
+            estacionesRules.style.display = 'none';
+            ventasRules.style.display = 'none';
+            
+            if (selectedValue === 'estaciones') {
+                estacionesRules.style.display = 'block';
+            } else if (selectedValue === 'ventas') {
+                ventasRules.style.display = 'block';
+            } else {
+                defaultMessage.style.display = 'block';
+            }
+        });
+
+        // Lógica para la sección FAQ
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const icon = button.querySelector('.icon');
+
+                button.classList.toggle('active');
+                answer.classList.toggle('show');
+
+                if (answer.classList.contains('show')) {
+                    icon.textContent = '–'; // 'menos'
+                    answer.style.maxHeight = answer.scrollHeight + 40 + "px"; // padding
+                    answer.style.paddingTop = "15px";
+                    answer.style.paddingBottom = "15px";
+                } else {
+                    icon.textContent = '+';
+                    answer.style.maxHeight = null;
+                    answer.style.paddingTop = "0";
+                    answer.style.paddingBottom = "0";
+                }
+            });
+        });
+
+        // Lógica para la animación de 5 segundos
+        setTimeout(() => {
+            const inicial = document.getElementById('descanso-inicial');
+            const final = document.getElementById('descanso-final');
+
+            if (inicial && final) {
+                // Efecto de desvanecimiento
+                inicial.style.opacity = '0';
+                setTimeout(() => {
+                    inicial.style.display = 'none';
+                    final.style.display = 'block';
+                    final.style.opacity = '0';
+                    // Forzar un reflujo para que la transición de opacidad funcione
+                    void final.offsetWidth; 
+                    final.style.opacity = '1';
+                }, 500); // 0.5s para la transición de opacidad
+            }
+        }, 5000); // 5000ms = 5 segundos
+    </script>
+
+</body>
+</html>
